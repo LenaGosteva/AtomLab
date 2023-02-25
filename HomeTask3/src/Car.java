@@ -1,4 +1,13 @@
 public class Car {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    private int id;
     public String brand;
     public String ownerName;
     public int weight;
@@ -9,7 +18,8 @@ public class Car {
         this.ownerName = "Иванов Иван Иванович";
     }
 
-    public Car(String brand, int weight, String ownerName) {
+    public Car(int id,String brand, int weight, String ownerName) {
+        this.id = id;
         this.brand = brand;
         this.ownerName = ownerName;
         this.weight = weight;

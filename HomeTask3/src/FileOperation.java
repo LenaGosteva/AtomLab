@@ -1,6 +1,9 @@
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class FileOperation {
     /*Поля*/
@@ -13,7 +16,7 @@ public class FileOperation {
         /*Методы*/
     }
 
-    public void WriteFile(List<Car> data) {
+    public void writeFile(List<Car> data) {
         try (FileWriter writer = new FileWriter(this.filePath, false)) {
             for (int j = 0; j < data.size(); j++) {
                 if (data.get(j) instanceof Car) {
@@ -28,5 +31,25 @@ public class FileOperation {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public ArrayList<Car> readFile() {
+        ArrayList<Car> list = new ArrayList<Car>();
+
+        try (FileReader read = new FileReader(this.filePath)) {
+            Scanner in = new Scanner(read);
+            String[] strArr;
+            String str;
+            while (in.hasNextLine()) {
+                str = in.nextLine();
+                strArr = str.split("!");
+
+                list.add(new Car(Integer.parseInt(strArr[0]),strArr[1], Integer.parseInt(strArr[2]), strArr[3]));
+
+            }
+        } catch (IOException e) {
+
+        }
+        return list;
     }
 }
